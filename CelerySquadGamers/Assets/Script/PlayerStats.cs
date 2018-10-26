@@ -21,18 +21,23 @@ public class PlayerStats : MonoBehaviour {
             newHealth += currency[i];
         }
         totalHealth = newHealth;
+        Debug.Log(totalHealth);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject temp = collision.gameObject;
-        if(temp.tag == "PartsCollect")
+        Vector2 dataValue;
+        if(temp.tag == "PartsCollect" || temp.tag == "Obstacle")
         {
-            //add points to curreny based on value from obj
+            //add points to curreny based on value from obj or remove points based on value from obj
+            dataValue = temp.GetComponent<objValueScript>().returnValue();
+            currency[(int)dataValue.y] += dataValue.x;
         }
         else if(temp.tag == "Obstacle")
         {
-            //remove points based on value from obj
+    
+
         }
     }
 }
