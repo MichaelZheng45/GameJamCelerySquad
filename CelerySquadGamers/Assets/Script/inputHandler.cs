@@ -24,7 +24,7 @@ public class inputHandler : MonoBehaviour {
         }
         else if(Input.GetKey(KeyCode.Space)) //defend
         {
-
+           
         }
 
         if(Input.GetKey(KeyCode.A)) //go left
