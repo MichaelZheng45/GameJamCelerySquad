@@ -21,6 +21,11 @@ public class inputHandler : MonoBehaviour {
         if(Input.GetKeyUp(KeyCode.Space)) //flapDown
         {
             birdMoveComp.birdUp();
+            birdMoveComp.flipGuard();
+        }
+        if(Input.GetKeyDown(KeyCode.Space)) //flapDown
+        {
+            birdMoveComp.flipGuard();
         }
         else if(Input.GetKey(KeyCode.Space)) //defend
         {
