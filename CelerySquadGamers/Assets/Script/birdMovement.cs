@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class birdMovement : MonoBehaviour {
 
@@ -9,16 +10,38 @@ public class birdMovement : MonoBehaviour {
     Rigidbody2D birdPhysics;
     public float horitzontalSpeed;
     public float verticalUpSpeed;
+    Animator anim;
 
-	void Start () {
+    private bool canFlap = true;
+
+	void Start () 
+    {
         birdPhysics = gameObject.GetComponent<Rigidbody2D>();
         birdTransform = gameObject.transform;
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate () 
+    {
 
 	}
+
+    public void flipGuard()
+    {
+        anim.SetBool("guarding", !anim.GetBool("guarding"));
+    }
+
+    //should only be called by animator------------
+    public void setInvince()
+    {
+        anim.SetBool("invincible", !anim.GetBool("invincible"));
+    }
+    public void allowFlap()
+    {
+        canFlap = true;
+    }
+    //----------------------------------------------
 
     public void birdTurn(bool right)
     {
@@ -37,7 +60,12 @@ public class birdMovement : MonoBehaviour {
 
     public void birdUp()
     {
-        birdPhysics.velocity *= 0;
-        birdPhysics.AddForce(verticalUpSpeed * birdTransform.up);
+        if (canFlap == true)
+        {
+            canFlap = false;
+            Debug.Log("FLAP");
+            birdPhysics.velocity *= 0;
+            birdPhysics.AddForce(verticalUpSpeed * birdTransform.up);
+        } 
     }
 }
