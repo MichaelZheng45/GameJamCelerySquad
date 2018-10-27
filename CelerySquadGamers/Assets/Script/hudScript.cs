@@ -1,16 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class hudScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Text junkCountText;
+    public GameObject birdPlayer;
+    PlayerStats thePlayerStats;
+
+    void Start()
+    {
+        thePlayerStats = birdPlayer.GetComponent<PlayerStats>();
+    }
+
+	public void UpdateJunkCounter()
+    {
+        junkCountText.text = thePlayerStats.partsCount.ToString();
+    }
+
 }
