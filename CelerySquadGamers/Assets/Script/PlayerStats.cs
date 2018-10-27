@@ -7,9 +7,14 @@ public class PlayerStats : MonoBehaviour {
     public float partsCount;
 
     public int hitlayer = 8;
+
+    public GameObject hitParticleSys;
+    ParticleSystem birdParticle;
+
+    public GameObject cameraMain;
 	// Use this for initialization
 	void Start () {
-		
+        birdParticle = hitParticleSys.GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +29,7 @@ public class PlayerStats : MonoBehaviour {
         if (temp.layer == hitlayer)
         {
             //add points to curreny based on value from obj or remove points based on value from obj
-            if (temp.tag == "Obstacle" /*&& blocking is true*/)
+            if ( false/*temp.tag == "Obstacle" && blocking is true*/)
             {
                 //ignore the damage taken and destroy the obstacle and add some JUICINESSS
                 //later on give that so it absorb parts animation or lookness
@@ -32,7 +37,15 @@ public class PlayerStats : MonoBehaviour {
             }
             else
             {
-                partsCount += tempObjScript.returnValue();
+                float rValue = tempObjScript.returnValue();
+
+                if(rValue < 0)
+                {
+                    birdParticle.Play();
+                    cameraMain.GetComponent<camChake>().CameraShake();
+                }
+
+                partsCount += rValue;
                 Destroy(temp);
             }
 
