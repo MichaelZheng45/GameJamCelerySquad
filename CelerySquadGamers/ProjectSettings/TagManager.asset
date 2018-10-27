@@ -8,6 +8,7 @@ TagManager:
   - Bird
   - Obstacle
   - PartsCollect
+  - junkEmitter
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - 
   - 
   - hitObj
-  - 
+  - Bird
   - 
   - 
   - 

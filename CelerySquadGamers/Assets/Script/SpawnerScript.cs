@@ -10,7 +10,7 @@ public class SpawnerScript : MonoBehaviour {
 
     public GameObject partPrefab;
     public float partSpawnRate;
-    float partTimer;
+    //float partTimer;
 
     public Vector2 xBounds;
     public Vector2 yBounds;
@@ -21,7 +21,7 @@ public class SpawnerScript : MonoBehaviour {
 	void Start () {
         spawnerTransform = gameObject.transform;
         obstacleTimer = 0;
-        partTimer = 0;
+        //partTimer = 0;
 	}
 	
 	// Update is called once per frame
@@ -33,12 +33,12 @@ public class SpawnerScript : MonoBehaviour {
 
     void partSpawn()
     {
-        partTimer += Time.deltaTime;
-        if(partTimer > partSpawnRate)
-        {
-            partTimer = 0;
-            spawnObj(partPrefab);
-        }
+    //    partTimer += Time.deltaTime;
+    //    if(partTimer > partSpawnRate)
+    //    {
+    //        partTimer = 0;
+    //        spawnObj(partPrefab);
+    //    }
     }
 
     void obstacleSpawn()

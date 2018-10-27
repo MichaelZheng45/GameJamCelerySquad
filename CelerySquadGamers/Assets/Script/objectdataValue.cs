@@ -8,5 +8,6 @@ public class objectdataValue : ScriptableObject
     public string objectName;
     public string tag;
     public float value;
+    public GameObject objectEmitter;
 }
 

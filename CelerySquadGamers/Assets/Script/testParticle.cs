@@ -12,7 +12,6 @@ public class testParticle : MonoBehaviour {
 	void Start () 
 	{
 		pSys = GetComponent<ParticleSystem>();
-		pSys.Emit(5);
 	}
 	
 	// Update is called once per frame
@@ -45,5 +44,10 @@ public class testParticle : MonoBehaviour {
         	}
 
         pSys.SetParticles(particles, particles.Length);
+	}
+
+	public void setPos(Vector3 newPos)
+	{
+		this.transform.position = newPos;
 	}
 }

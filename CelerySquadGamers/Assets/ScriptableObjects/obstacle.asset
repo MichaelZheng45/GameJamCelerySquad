@@ -14,5 +14,5 @@ MonoBehaviour:
   objectName: Obstacle
   tag: Obstacle
   value: -10
-  currencyType: 1
-  objectSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  objectEmitter: {fileID: 1646146214985462, guid: 2644a14ac0a49c1438fde86892b02472,
+    type: 2}
