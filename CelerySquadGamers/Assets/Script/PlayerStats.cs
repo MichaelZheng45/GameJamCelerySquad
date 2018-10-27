@@ -51,16 +51,17 @@ public class PlayerStats : MonoBehaviour {
                     cameraMain.GetComponent<camChake>().CameraShake();
                 }
 
-<<<<<<< HEAD
-                //partsCount += rValue;
-=======
                 partsCount += rValue;
-                thehudscript.UpdateJunkCounter(partsCount);
+                //thehudscript.UpdateJunkCounter(partsCount); NO HUD YET
 
->>>>>>> c03236feb0611674fad0876c30ef0bec63833fcc
                 Destroy(temp);
             }
 
         }
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("HOLY SH*T, IVE BEEN SHOT");
     }
 }

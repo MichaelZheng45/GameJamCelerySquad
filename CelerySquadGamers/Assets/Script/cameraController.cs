@@ -38,7 +38,7 @@ public class cameraController : MonoBehaviour {
 			rb.velocity = new Vector2(0,0);
 			rb.gravityScale = 0;
 		}
-	}
+    }
 
 	void OnTriggerEnter2D(Collider2D col)
 	{

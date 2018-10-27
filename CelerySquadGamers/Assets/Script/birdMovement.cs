@@ -65,7 +65,7 @@ public class birdMovement : MonoBehaviour {
             canFlap = false;
             Debug.Log("FLAP");
             birdPhysics.velocity *= 0;
-            birdPhysics.AddForce(new Vector2(0, 10), ForceMode2D.Impulse); //verticalUpSpeed * birdTransform.up
+            birdPhysics.AddForce(new Vector2(0, verticalUpSpeed), ForceMode2D.Impulse); //verticalUpSpeed * birdTransform.up
         } 
     }
 }

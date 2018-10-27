@@ -26,9 +26,8 @@ public class camChake : MonoBehaviour {
             timer += Time.deltaTime;
 
             float xValue = Random.Range(-.5f, .6f);
-            float yvalue = Random.Range(-.5f, .6f);
 
-            newPos = new Vector3(newPos.x + xValue,newPos.y + yvalue,-10);
+            newPos = new Vector3(newPos.x + xValue,newPos.y,-10);
             if(timer > duration)
             {
                 startShake = false;
