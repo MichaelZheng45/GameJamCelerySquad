@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour {
 
     public GameObject hitParticleSys;
     ParticleSystem birdParticle;
+    public hudScript thehudscript;
 
     public GameObject cameraMain;
 	// Use this for initialization
@@ -46,6 +47,8 @@ public class PlayerStats : MonoBehaviour {
                 }
 
                 partsCount += rValue;
+                thehudscript.UpdateJunkCounter(partsCount);
+
                 Destroy(temp);
             }
 

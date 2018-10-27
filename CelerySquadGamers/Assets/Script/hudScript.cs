@@ -6,17 +6,11 @@ using UnityEngine.UI;
 public class hudScript : MonoBehaviour {
 
     public Text junkCountText;
-    public GameObject birdPlayer;
-    PlayerStats thePlayerStats;
+ 
 
-    void Start()
+	public void UpdateJunkCounter(float partsCount)
     {
-        thePlayerStats = birdPlayer.GetComponent<PlayerStats>();
-    }
-
-	public void UpdateJunkCounter()
-    {
-        junkCountText.text = thePlayerStats.partsCount.ToString();
+        junkCountText.text = partsCount.ToString();
     }
 
 }
