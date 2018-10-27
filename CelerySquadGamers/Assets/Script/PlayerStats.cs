@@ -11,6 +11,7 @@ public class PlayerStats : MonoBehaviour {
     private Animator anim;
     public GameObject hitParticleSys;
     ParticleSystem birdParticle;
+    public hudScript thehudscript;
 
     public GameObject cameraMain;
 	// Use this for initialization
@@ -50,7 +51,13 @@ public class PlayerStats : MonoBehaviour {
                     cameraMain.GetComponent<camChake>().CameraShake();
                 }
 
+<<<<<<< HEAD
                 //partsCount += rValue;
+=======
+                partsCount += rValue;
+                thehudscript.UpdateJunkCounter(partsCount);
+
+>>>>>>> c03236feb0611674fad0876c30ef0bec63833fcc
                 Destroy(temp);
             }
 
