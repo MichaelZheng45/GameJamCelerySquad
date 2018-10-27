@@ -18,14 +18,14 @@ public class inputHandler : MonoBehaviour {
 
     void handleInput()
     {
-        if(Input.GetKeyUp(KeyCode.Space)) //flapDown
+        if(Input.GetKeyUp(KeyCode.Space)) //arms up, guard up
         {
             birdMoveComp.birdUp();
-            birdMoveComp.flipGuard();
+            birdMoveComp.setGuard(false);
         }
-        if(Input.GetKeyDown(KeyCode.Space)) //flapDown
+        if(Input.GetKeyDown(KeyCode.Space)) //arms down, guard down
         {
-            birdMoveComp.flipGuard();
+            birdMoveComp.setGuard(true);
         }
         else if(Input.GetKey(KeyCode.Space)) //defend
         {

@@ -27,9 +27,9 @@ public class birdMovement : MonoBehaviour {
 
 	}
 
-    public void flipGuard()
+    public void setGuard(bool newGuard)
     {
-        anim.SetBool("guarding", !anim.GetBool("guarding"));
+        anim.SetBool("guarding", newGuard);
     }
 
     //should only be called by animator------------
@@ -68,4 +68,10 @@ public class birdMovement : MonoBehaviour {
             birdPhysics.AddForce(new Vector2(0, verticalUpSpeed), ForceMode2D.Impulse); //verticalUpSpeed * birdTransform.up
         } 
     }
+
+    public void Reset()
+	{
+        birdPhysics.velocity = new Vector2(0,0);
+		transform.position = new Vector2(0,-3);
+	}
 }

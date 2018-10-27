@@ -55,4 +55,9 @@ public class cameraController : MonoBehaviour {
 			canFollow = false;
 		}
 	}
+
+	public void Reset()
+	{
+		transform.position = new Vector3(0,0, -10);
+	}
 }
