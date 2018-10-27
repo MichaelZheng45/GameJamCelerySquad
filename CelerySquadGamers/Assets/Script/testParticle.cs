@@ -7,7 +7,7 @@ public class testParticle : MonoBehaviour {
 	private ParticleSystem pSys;
 	public GameObject bird;
 	private Vector3 birdPos;
-
+    public GameObject cloudObj;
 	// Use this for initialization
 	void Start () 
 	{
@@ -49,5 +49,7 @@ public class testParticle : MonoBehaviour {
 	public void setPos(Vector3 newPos)
 	{
 		this.transform.position = newPos;
-	}
+        cloudObj.GetComponent<ParticleSystem>().Play();
+    }
+
 }
