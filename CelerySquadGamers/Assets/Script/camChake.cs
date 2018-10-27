@@ -25,7 +25,7 @@ public class camChake : MonoBehaviour {
         {
             timer += Time.deltaTime;
 
-            float xValue = Random.Range(-.5f, .6f);
+            float xValue = Random.Range(-.2f, .3f);
 
             newPos = new Vector3(newPos.x + xValue,newPos.y,-10);
             if(timer > duration)
