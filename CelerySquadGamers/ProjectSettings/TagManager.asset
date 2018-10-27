@@ -4,8 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PartsCollect
-  - Obstacle
+  - Undefined
   - Bird
   layers:
   - Default
@@ -16,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - Bird
+  - 
   - 
   - 
   - 

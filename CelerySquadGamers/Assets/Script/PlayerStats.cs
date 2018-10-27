@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
 
-    public List<float> currency;
+    public float partsCount;
 
-    float totalHealth;
+    public int hitlayer = 8;
 	// Use this for initialization
 	void Start () {
 		
@@ -15,28 +15,26 @@ public class PlayerStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float newHealth = 0;
-        for(int i = 0; i < currency.Count; i++)
-        {
-            newHealth += currency[i];
-        }
-        totalHealth = newHealth;
-        Debug.Log(totalHealth);
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject temp = collision.gameObject;
-        Vector2 dataValue;
-        if(temp.tag == "PartsCollect" || temp.tag == "Obstacle")
+        objValueScript tempObjScript = temp.GetComponent<objValueScript>();
+        if (temp.layer == hitlayer)
         {
             //add points to curreny based on value from obj or remove points based on value from obj
-            dataValue = temp.GetComponent<objValueScript>().returnValue();
-            currency[(int)dataValue.y] += dataValue.x;
-        }
-        else if(temp.tag == "Obstacle")
-        {
-    
+            if (temp.tag == "Obstacle" /*&& blocking is true*/)
+            {
+                //ignore the damage taken and destroy the obstacle and add some JUICINESSS
+                //later on give that so it absorb parts animation or lookness
+                tempObjScript.destroyObj(gameObject);
+            }
+            else
+            {
+                partsCount += tempObjScript.returnValue();
+                Destroy(temp);
+            }
 
         }
     }
