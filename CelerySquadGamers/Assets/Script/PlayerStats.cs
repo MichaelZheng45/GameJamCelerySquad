@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour {
             else
             {
                 partsCount += tempObjScript.returnValue();
+                Destroy(temp);
             }
 
         }
