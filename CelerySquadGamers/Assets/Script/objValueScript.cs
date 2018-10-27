@@ -13,8 +13,13 @@ public class objValueScript : MonoBehaviour{
         gameObject.GetComponent<SpriteRenderer>().sprite = objectVal.objectSprite;
     }
 
-    public Vector2 returnValue()
+    public float returnValue()
     {
-        return new Vector2(objectVal.value,objectVal.currencyType);
+        return objectVal.value;
+    }
+
+    public void destroyObj(GameObject target)
+    {
+
     }
 }
