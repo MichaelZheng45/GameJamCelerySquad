@@ -18,7 +18,7 @@ public class camChake : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Vector3 newPos = camTransform.position; //zero is temp
-        Vector3 newPos = new Vector3(0, 0, -10);
+        Vector3 newPos = new Vector3(0, transform.position.y, -10);
         //camera follow
 
         if (startShake)

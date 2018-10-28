@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-
+using TMPro;
 public class PlayerStats : MonoBehaviour {
 
     public float partsCount;
@@ -14,8 +14,11 @@ public class PlayerStats : MonoBehaviour {
     public hudScript thehudscript;
 
     public GameObject cameraMain;
-	// Use this for initialization
-	void Start () 
+
+    bool isDead = false;
+    public TextMeshProUGUI playerPartsText;
+    // Use this for initialization
+    void Start () 
     {
         birdParticle = hitParticleSys.GetComponent<ParticleSystem>();
 
@@ -25,8 +28,25 @@ public class PlayerStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-
+        playerPartsText.text = "Count: " + partsCount;
+        if(partsCount <= 0)
+        {
+            if (isDead == false)
+            {
+                var main = birdParticle.main;
+                main.loop = true;
+                birdParticle.Play();
+                isDead = true;
+            }
+           
+            cameraMain.GetComponent<camChake>().CameraShake();
+        }
 	}
+
+    public bool checkDead()
+    {
+        return isDead;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -63,5 +83,6 @@ public class PlayerStats : MonoBehaviour {
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("HOLY SH*T, IVE BEEN SHOT");
+        partsCount += 2;
     }
 }

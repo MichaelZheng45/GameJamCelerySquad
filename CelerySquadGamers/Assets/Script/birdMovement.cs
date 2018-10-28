@@ -13,9 +13,11 @@ public class birdMovement : MonoBehaviour {
     Animator anim;
 
     private bool canFlap = true;
+    PlayerStats birdStats;
 
 	void Start () 
     {
+        birdStats = GetComponent<PlayerStats>();
         birdPhysics = gameObject.GetComponent<Rigidbody2D>();
         birdTransform = gameObject.transform;
         anim = GetComponent<Animator>();
@@ -48,19 +50,27 @@ public class birdMovement : MonoBehaviour {
         float newHspeed;
         if(right)
         {
-            newHspeed = horitzontalSpeed;
+            newHspeed = birdTransform.position.x + horitzontalSpeed;
+            if(newHspeed > 2.4)
+            {
+                newHspeed = 2.4f;
+            }
         }
         else
         {
-            newHspeed = -horitzontalSpeed;
+            newHspeed = birdTransform.position.x - horitzontalSpeed;
+            if(newHspeed < -2.4)
+            {
+                newHspeed = -2.4f;
+            }
         }
 
-        birdTransform.position = new Vector3(birdTransform.position.x + newHspeed, birdTransform.position.y, 0);
+        birdTransform.position = new Vector3(newHspeed, birdTransform.position.y, 0);
     }
 
     public void birdUp()
     {
-        if (canFlap == true)
+        if (canFlap == true && birdStats.checkDead() != true)
         {
             canFlap = false;
             Debug.Log("FLAP");

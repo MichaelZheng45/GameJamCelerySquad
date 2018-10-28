@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Despawner : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //destroy objects or create obj bool;
+        if(collision.tag == "Bird")
+        {
+            Debug.Log("GIVE ME FREEDOM OR GIVE ME DEATH");
+        }
     }
 }
