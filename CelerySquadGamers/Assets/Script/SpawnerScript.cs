@@ -12,6 +12,12 @@ public class SpawnerScript : MonoBehaviour {
     public float partSpawnRate;
     float partTimer;
 
+    public GameObject metroPrefab;
+    public float metroSpawnRate;
+    float metroTimer;
+
+    float updateTimeCount;
+
     public Vector2 xBounds;
     public Vector2 yBounds;
 
@@ -33,6 +39,7 @@ public class SpawnerScript : MonoBehaviour {
 
         partSpawn();
         obstacleSpawn();
+        metroSpawn();
 	}
 
     void partSpawn()
@@ -45,6 +52,16 @@ public class SpawnerScript : MonoBehaviour {
         }
     }
 
+    void metroSpawn()
+    {
+        metroTimer += Time.deltaTime;
+        if (metroTimer > metroSpawnRate)
+        {
+            metroTimer = 0;
+            spawnObj(metroPrefab, 20);
+        }
+    }
+
     void obstacleSpawn()
     {
         obstacleTimer += Time.deltaTime;
@@ -53,14 +70,25 @@ public class SpawnerScript : MonoBehaviour {
             obstacleTimer = 0;
             spawnObj(obstaclePrefab[Random.Range(0,obstaclePrefab.Count)]);
         }
+
+        updateTimeCount += Time.deltaTime;
+        if(updateTimeCount > 20)
+        {
+            updateTimeCount = 0;
+            obstacleSpawnRate -= .1f;
+            if(obstacleSpawnRate < .5f)
+            {
+                obstacleSpawnRate = .5f;
+            }
+        }
     }
 
-    void spawnObj(GameObject prefab)
+    void spawnObj(GameObject prefab, int addY = 0)
     {
         float xBound = Random.Range(xBounds.x, xBounds.y);
         float yBound = Random.Range(yBounds.x, yBounds.y);
 
-        Vector3 newP = new Vector3(xBound, yBound + spawnerTransform.position.y, 0);
+        Vector3 newP = new Vector3(xBound, yBound + spawnerTransform.position.y + addY, 0);
         GameObject newObj = Instantiate(prefab, newP, spawnerTransform.rotation);
 
         despawnerScr.addToActive(newObj);

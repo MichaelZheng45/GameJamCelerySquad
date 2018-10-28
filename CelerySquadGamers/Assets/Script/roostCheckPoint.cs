@@ -29,7 +29,9 @@ public class roostCheckPoint : MonoBehaviour {
             Debug.Log("Roost");
             Time.timeScale = 0;
             roostMenu.enabled = true;
+            collision.gameObject.GetComponent<PlayerStats>().helmetOn = false;
             despawnScr.deleteAllActive();
+            
         }
     }
 

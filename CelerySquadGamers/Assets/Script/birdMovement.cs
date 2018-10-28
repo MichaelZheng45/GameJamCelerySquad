@@ -73,6 +73,7 @@ public class birdMovement : MonoBehaviour {
     {
         if (canFlap == true && birdStats.checkDead() != true)
         {
+            SoundManage.playAudioClip(CLIP_ENUM.FLAP);
             canFlap = false;
             Debug.Log("FLAP");
             birdPhysics.velocity *= 0;

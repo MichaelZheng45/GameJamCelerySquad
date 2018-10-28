@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - PartsCollect
   - junkEmitter
+  - Metro
   layers:
   - Default
   - TransparentFX
@@ -51,4 +52,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Chaos
+    uniqueID: 1237738303
     locked: 0

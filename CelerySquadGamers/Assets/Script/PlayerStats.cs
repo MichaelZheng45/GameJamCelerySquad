@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 using TMPro;
+using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour {
 
     public float partsCount;
@@ -11,7 +12,6 @@ public class PlayerStats : MonoBehaviour {
     private Animator anim;
     public GameObject hitParticleSys;
     ParticleSystem birdParticle;
-    public hudScript thehudscript;
 
     public GameObject cameraMain;
 
@@ -20,9 +20,29 @@ public class PlayerStats : MonoBehaviour {
 
     bool isDead = false;
     public TextMeshProUGUI playerPartsText;
+    public TextMeshProUGUI roostPlayerPartsText;
+    public youcantHavethis sayNoer;
+    //powerups
+    public int helmetDmgReducer;
+    public int trampolinePush;
+    public bool helmetOn = false;
+    public bool trampolineOn = true;
+    public Image helmetObj;
+    public Image trampoline;
+    public int helmetCost;
+    public int trampolineCost;
+
+    Transform userTransform;
+    Transform cameraTransform;
+    Rigidbody2D rb;
+
+
     // Use this for initialization
     void Start () 
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        userTransform = gameObject.transform;
+        cameraTransform = cameraMain.transform;
         birdParticle = hitParticleSys.GetComponent<ParticleSystem>();
 
         anim = GetComponent<Animator>();
@@ -33,7 +53,8 @@ public class PlayerStats : MonoBehaviour {
 	void Update () 
     {
         playerPartsText.text = "Count: " + partsCount;
-        if(partsCount <= 0)
+        roostPlayerPartsText.text = "Count: " + partsCount;
+        if (partsCount <= 0)
         {
             if (isDead == false)
             {
@@ -45,11 +66,51 @@ public class PlayerStats : MonoBehaviour {
            
             cameraMain.GetComponent<camChake>().CameraShake();
         }
-	}
+
+        //powerups
+        trampoline.enabled = trampolineOn;
+        helmetObj.enabled = helmetOn;
+
+        if(trampolineOn && userTransform.position.y < cameraMain.transform.position.y - 5)
+        {
+            rb.velocity *= 0;
+            rb.AddForce(trampolinePush * new Vector2(0, 1));
+            trampolineOn = false;
+        }
+
+    }
 
     public bool checkDead()
     {
         return isDead;
+    }
+
+    public void buyTrampoline()
+    {
+        if(trampolineOn || partsCount - trampolineCost <= 0)
+        {
+            //send error that you cant buy
+            sayNoer.sayNo();
+        }
+        else
+        {
+            trampolineOn = true;
+            partsCount -= trampolineCost;
+        }
+    }
+
+    public void buyHelmet()
+    {
+        if(helmetOn || partsCount - helmetCost <= 0)
+        {
+            //send error that you cant buy
+            sayNoer.sayNo();
+        }
+        else
+        {
+            helmetOn = true;
+            partsCount -=helmetCost;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -65,6 +126,7 @@ public class PlayerStats : MonoBehaviour {
                 //later on give that so it absorb parts animation or lookness
                 despawnScr.removeFromActive(temp);
                 tempObjScript.destroyObj(gameObject);
+                SoundManage.playAudioClip(CLIP_ENUM.BLOCK);
             }
             else
             {
@@ -72,14 +134,28 @@ public class PlayerStats : MonoBehaviour {
 
                 if(rValue < 0)
                 {
+                    if(helmetOn)
+                    {
+                        rValue -= (-helmetDmgReducer); //reduce dmg by 2
+                    }
+                    else
+                    {
+                        SoundManage.playAudioClip(CLIP_ENUM.DESTROY);
+                    }
                     birdParticle.Play();
                     cameraMain.GetComponent<camChake>().CameraShake();
                 }
-
+                else
+                {
+                    SoundManage.playAudioClip(CLIP_ENUM.COLLECT);
+                }
                 partsCount += rValue;
                 //thehudscript.UpdateJunkCounter(partsCount); NO HUD YET
-                despawnScr.removeFromActive(temp);
-                Destroy(temp);
+                if(temp.tag != "Metro")
+                {
+                    despawnScr.removeFromActive(temp);
+                    Destroy(temp);
+                }
             }
 
         }
@@ -88,6 +164,6 @@ public class PlayerStats : MonoBehaviour {
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("HOLY SH*T, IVE BEEN SHOT");
-        partsCount += 2;
+        partsCount += 1;
     }
 }

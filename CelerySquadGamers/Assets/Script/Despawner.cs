@@ -23,7 +23,16 @@ public class Despawner : MonoBehaviour {
             Debug.Log("GIVE ME FREEDOM OR GIVE ME DEATH");
             sceneManagerScr.LoseGame();
         }
-        if(collision.gameObject.layer ==  8)
+        if(collision.gameObject.layer ==  8 && collision.tag != "Metro")
+        {
+            removeFromActive(collision.gameObject);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 8 && collision.tag == "Metro")
         {
             removeFromActive(collision.gameObject);
             Destroy(collision.gameObject);
