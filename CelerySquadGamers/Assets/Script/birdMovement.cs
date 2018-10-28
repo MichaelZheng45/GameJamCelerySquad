@@ -15,17 +15,13 @@ public class birdMovement : MonoBehaviour {
     private bool canFlap = true;
     PlayerStats birdStats;
 
-    private float originalGrav;
-
 	void Start () 
     {
         birdStats = GetComponent<PlayerStats>();
         birdPhysics = gameObject.GetComponent<Rigidbody2D>();
         birdTransform = gameObject.transform;
         anim = GetComponent<Animator>();
-        originalGrav = birdPhysics.gravityScale;
-        birdPhysics.gravityScale = 0;
-        Time.timeScale = 0;
+        GameManagement.StartGracePeriod();
 	}
 	
 	// Update is called once per frame
@@ -77,7 +73,6 @@ public class birdMovement : MonoBehaviour {
     {
         if (canFlap == true && birdStats.checkDead() != true)
         {
-            birdPhysics.gravityScale = originalGrav;
             canFlap = false;
             Debug.Log("FLAP");
             birdPhysics.velocity *= 0;
@@ -89,5 +84,9 @@ public class birdMovement : MonoBehaviour {
 	{
         birdPhysics.velocity = new Vector2(0,0);
 		transform.position = new Vector2(0,-3);
+        canFlap = true;
+        anim.SetBool("guarding", false);
+        anim.SetBool("invincible", true);
+        anim.Rebind();
 	}
 }

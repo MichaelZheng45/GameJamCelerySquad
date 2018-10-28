@@ -37,6 +37,7 @@ public class roostCheckPoint : MonoBehaviour {
     {
         Debug.Log("CLOSE THE ROOST");
         roostMenu.enabled = false;
-        Time.timeScale = 1;
+        despawnScr.deleteAllActive();
+        GameManagement.StartGracePeriod();
     }
 }

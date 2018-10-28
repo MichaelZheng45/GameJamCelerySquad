@@ -8,6 +8,7 @@ public class SceneManagementScript : MonoBehaviour {
 	public string gameSceneName;
 	public string rulesSceneName;
 	public string titleSceneName;
+	public string loseSceneName;
 
 	public void StartGame()
 	{
@@ -22,6 +23,11 @@ public class SceneManagementScript : MonoBehaviour {
 	public void GoToTitle()
 	{
 		SceneManager.LoadScene(titleSceneName);
+	}
+
+	public void LoseGame()
+	{
+		SceneManager.LoadScene(loseSceneName);
 	}
 
 	public void QuitGame()

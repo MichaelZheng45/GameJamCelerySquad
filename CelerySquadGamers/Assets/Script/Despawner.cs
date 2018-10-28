@@ -5,11 +5,13 @@ using UnityEngine;
 public class Despawner : MonoBehaviour {
 
     private List<GameObject> activeObjects;
-
+    public GameObject SceneManager;
+    private SceneManagementScript sceneManagerScr;
 
     private void Start()
     {
         activeObjects = new List<GameObject>();
+        sceneManagerScr = SceneManager.GetComponent<SceneManagementScript>();
     }
 
 
@@ -19,6 +21,7 @@ public class Despawner : MonoBehaviour {
         if(collision.tag == "Bird")
         {
             Debug.Log("GIVE ME FREEDOM OR GIVE ME DEATH");
+            sceneManagerScr.LoseGame();
         }
         if(collision.gameObject.layer ==  8)
         {
@@ -46,12 +49,10 @@ public class Despawner : MonoBehaviour {
 
     public void deleteAllActive()
     {
-        Debug.Log(activeObjects.Count);
         for (int i = 0; i < activeObjects.Count; i++)
         {
             GameObject temp = activeObjects[i];
             activeObjects.RemoveAt(i);
-            Debug.Log(temp.name);
             Destroy(temp);
         }
     }

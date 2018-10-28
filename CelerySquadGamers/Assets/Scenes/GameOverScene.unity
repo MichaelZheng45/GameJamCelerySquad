@@ -613,9 +613,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97d44744ccbcd44eadc77f1db7a2d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: SampleScene
+  gameSceneName: newTempScene
   rulesSceneName: RulesScene
   titleSceneName: StartScreen
+  loseSceneName: 
 --- !u!1 &1610291258
 GameObject:
   m_ObjectHideFlags: 0

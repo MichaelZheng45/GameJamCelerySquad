@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 38a48a5933fa005439789ff21e389c38
+  - enabled: 1
+    path: Assets/Scenes/newTempScene.unity
+    guid: cd5367c0273f0a3469fad71f66850dc0
   m_configObjects: {}

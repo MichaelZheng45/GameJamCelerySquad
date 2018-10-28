@@ -6,13 +6,18 @@ public class inputHandler : MonoBehaviour {
 
     public GameObject bird;
     birdMovement birdMoveComp;
+
+    private bool canMoveBird = false;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
         birdMoveComp = bird.GetComponent<birdMovement>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         handleInput();
 	}
 
@@ -20,12 +25,26 @@ public class inputHandler : MonoBehaviour {
     {
         if(Input.GetKeyUp(KeyCode.Space)) //arms up, guard up
         {
-            birdMoveComp.birdUp();
-            birdMoveComp.setGuard(false);
+            if (!canMoveBird)
+            {
+                GameManagement.EndGracePeriod();
+
+                birdMoveComp.birdUp();
+                birdMoveComp.setGuard(false);
+            }
+            else if (canMoveBird)
+            {
+                birdMoveComp.birdUp();
+                birdMoveComp.setGuard(false);
+            }
         }
         if(Input.GetKeyDown(KeyCode.Space)) //arms down, guard down
         {
-            birdMoveComp.setGuard(true);
+            if (canMoveBird)
+            {
+                birdMoveComp.setGuard(true);
+            }
+            
         }
         else if(Input.GetKey(KeyCode.Space)) //defend
         {
@@ -41,5 +60,10 @@ public class inputHandler : MonoBehaviour {
         {
             birdMoveComp.birdTurn(true);
         }
+    }
+
+    public void setMoveBird(bool permission)
+    {
+        canMoveBird = permission;
     }
 }
