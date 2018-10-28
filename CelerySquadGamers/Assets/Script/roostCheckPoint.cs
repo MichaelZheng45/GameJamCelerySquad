@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class roostCheckPoint : MonoBehaviour {
 
     public Canvas roostMenu;
+    public GameObject despawner;
+    private Despawner despawnScr;
 
 	// Use this for initialization
 	void Start () 
     {
 		roostMenu.enabled = false;
+        despawnScr = despawner.GetComponent<Despawner>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +29,7 @@ public class roostCheckPoint : MonoBehaviour {
             Debug.Log("Roost");
             Time.timeScale = 0;
             roostMenu.enabled = true;
+            despawnScr.deleteAllActive();
         }
     }
 

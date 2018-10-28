@@ -15,6 +15,9 @@ public class PlayerStats : MonoBehaviour {
 
     public GameObject cameraMain;
 
+    public GameObject despawner;
+    private Despawner despawnScr;
+
     bool isDead = false;
     public TextMeshProUGUI playerPartsText;
     // Use this for initialization
@@ -23,6 +26,7 @@ public class PlayerStats : MonoBehaviour {
         birdParticle = hitParticleSys.GetComponent<ParticleSystem>();
 
         anim = GetComponent<Animator>();
+        despawnScr = despawner.GetComponent<Despawner>();
 	}
 	
 	// Update is called once per frame
@@ -59,6 +63,7 @@ public class PlayerStats : MonoBehaviour {
             {
                 //ignore the damage taken and destroy the obstacle and add some JUICINESSS
                 //later on give that so it absorb parts animation or lookness
+                despawnScr.removeFromActive(temp);
                 tempObjScript.destroyObj(gameObject);
             }
             else
@@ -73,7 +78,7 @@ public class PlayerStats : MonoBehaviour {
 
                 partsCount += rValue;
                 //thehudscript.UpdateJunkCounter(partsCount); NO HUD YET
-
+                despawnScr.removeFromActive(temp);
                 Destroy(temp);
             }
 

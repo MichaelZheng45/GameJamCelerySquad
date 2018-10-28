@@ -17,10 +17,14 @@ public class SpawnerScript : MonoBehaviour {
 
     Transform spawnerTransform;
 
+    public GameObject Despawner;
+    private Despawner despawnerScr;
+
 	// Use this for initialization
 	void Start () {
         spawnerTransform = gameObject.transform;
         obstacleTimer = 0;
+        despawnerScr = Despawner.GetComponent<Despawner>();
         //partTimer = 0;
 	}
 	
@@ -58,5 +62,7 @@ public class SpawnerScript : MonoBehaviour {
 
         Vector3 newP = new Vector3(xBound, yBound + spawnerTransform.position.y, 0);
         GameObject newObj = Instantiate(prefab, newP, spawnerTransform.rotation);
+
+        despawnerScr.addToActive(newObj);
     }
 }
