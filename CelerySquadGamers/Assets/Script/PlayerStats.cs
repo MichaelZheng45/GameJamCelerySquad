@@ -103,7 +103,7 @@ public class PlayerStats : MonoBehaviour {
         trampoline.enabled = trampolineOn;
         helmetObj.enabled = helmetOn;
 
-        if(trampolineOn && userTransform.position.y < cameraMain.transform.position.y - 5)
+        if(trampolineOn && userTransform.position.y < cameraMain.transform.position.y - 5 && partsCount > 0)
         {
             rb.velocity *= 0;
             rb.AddForce(trampolinePush * new Vector2(0, 1));
