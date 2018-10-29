@@ -8,7 +8,6 @@ public enum CLIP_ENUM
     DESTROY,
     FLAP,
     HARDHAT,
-    TRAMPOLINE,
     METROHIT
 }
 public class SoundManage : MonoBehaviour {
