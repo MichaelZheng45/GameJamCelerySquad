@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour {
     private Animator anim;
     public GameObject hitParticleSys;
     ParticleSystem birdParticle;
+    public ParticleSystem featherParts;
 
     public GameObject cameraMain;
 
@@ -76,6 +77,7 @@ public class PlayerStats : MonoBehaviour {
             rb.velocity *= 0;
             rb.AddForce(trampolinePush * new Vector2(0, 1));
             trampolineOn = false;
+            SoundManage.playAudioClip(CLIP_ENUM.FLAP);
         }
 
     }
@@ -137,6 +139,7 @@ public class PlayerStats : MonoBehaviour {
                     if(helmetOn)
                     {
                         rValue -= (-helmetDmgReducer); //reduce dmg by 2
+                        SoundManage.playAudioClip(CLIP_ENUM.HARDHAT);
                     }
                     else
                     {
@@ -155,6 +158,11 @@ public class PlayerStats : MonoBehaviour {
                 {
                     despawnScr.removeFromActive(temp);
                     Destroy(temp);
+                }
+                else
+                {
+                    featherParts.Play();
+                    SoundManage.playAudioClip(CLIP_ENUM.METROHIT);
                 }
             }
 
