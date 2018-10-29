@@ -7210,6 +7210,14 @@ MonoBehaviour:
   trampoline: {fileID: 1821161371}
   helmetCost: 15
   trampolineCost: 15
+  partThresh1: 30
+  partThresh2: 40
+  partThresh3: 50
+  partThresh4: 60
+  weightScale1: 1
+  weightScale2: 1.5
+  weightScale3: 2
+  weightScale4: 2.5
 --- !u!1 &1349328391
 GameObject:
   m_ObjectHideFlags: 0
