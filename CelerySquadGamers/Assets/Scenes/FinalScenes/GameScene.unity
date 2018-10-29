@@ -5127,7 +5127,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Buy Helmet:15
+  m_Text: 'Buy Helmet: 100'
 --- !u!222 &310984414
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12057,12 +12057,12 @@ MonoBehaviour:
   trampolineOn: 0
   helmetObj: {fileID: 835908044}
   trampoline: {fileID: 1821161371}
-  helmetCost: 15
-  trampolineCost: 15
-  partThresh1: 30
-  partThresh2: 50
-  partThresh3: 70
-  partThresh4: 90
+  helmetCost: 100
+  trampolineCost: 100
+  partThresh1: 50
+  partThresh2: 100
+  partThresh3: 150
+  partThresh4: 200
   weightScale1: 0.55
   weightScale2: 0.7
   weightScale3: 0.85
@@ -12430,7 +12430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Buy Trampoline:15
+  m_Text: 'Buy Trampoline: 100'
 --- !u!222 &1814834131
 CanvasRenderer:
   m_ObjectHideFlags: 0
