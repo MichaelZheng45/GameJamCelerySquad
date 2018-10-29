@@ -30,12 +30,12 @@ public class inputHandler : MonoBehaviour {
                 GameManagement.EndGracePeriod();
 
                 birdMoveComp.birdUp();
-                birdMoveComp.setGuard(false);
+                //birdMoveComp.setGuard(false);
             }
             else if (canMoveBird)
             {
                 birdMoveComp.birdUp();
-                birdMoveComp.setGuard(false);
+                //birdMoveComp.setGuard(false);
             }
         }
         if(Input.GetKeyDown(KeyCode.Space)) //arms down, guard down

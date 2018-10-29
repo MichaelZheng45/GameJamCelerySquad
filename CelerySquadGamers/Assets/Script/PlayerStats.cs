@@ -57,22 +57,27 @@ public class PlayerStats : MonoBehaviour {
         if (partsCount > partThresh4)
         {
             rb.mass = weightScale4;
+            anim.SetInteger("stage", 4);
         }
         else if (partsCount > partThresh3)
         {
             rb.mass = weightScale3;
+            anim.SetInteger("stage", 3);
         }
         else if (partsCount > partThresh2)
         {
             rb.mass = weightScale2;
+            anim.SetInteger("stage", 2);
         }
         else if (partsCount > partThresh1)
         {
             rb.mass = weightScale1;
+            anim.SetInteger("stage", 1);
         }
         else 
         {
             rb.mass = 0.5f;
+            anim.SetInteger("stage", 0);
         }
 
         if (partsCount > 0)
