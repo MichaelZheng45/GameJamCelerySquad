@@ -32,6 +32,8 @@ public class PlayerStats : MonoBehaviour {
     public int helmetCost;
     public int trampolineCost;
 
+    public float partThresh1, partThresh2, partThresh3, partThresh4, weightScale1, weightScale2, weightScale3, weightScale4;
+
     Transform userTransform;
     Transform cameraTransform;
     Rigidbody2D rb;
@@ -52,8 +54,38 @@ public class PlayerStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        playerPartsText.text = "Count: " + partsCount;
-        roostPlayerPartsText.text = "Count: " + partsCount;
+        if (partsCount > partThresh4)
+        {
+            rb.mass = weightScale4;
+        }
+        else if (partsCount > partThresh3)
+        {
+            rb.mass = weightScale3;
+        }
+        else if (partsCount > partThresh2)
+        {
+            rb.mass = weightScale2;
+        }
+        else if (partsCount > partThresh1)
+        {
+            rb.mass = weightScale1;
+        }
+        else 
+        {
+            rb.mass = 0.5f;
+        }
+
+        if (partsCount > 0)
+        {
+            playerPartsText.text = "Count: " + partsCount;
+            roostPlayerPartsText.text = "Count: " + partsCount;
+        }
+        else 
+        {
+            playerPartsText.text = "Count: " + 0;
+            roostPlayerPartsText.text = "Count: " + 0;
+        }
+
         if (partsCount <= 0)
         {
             if (isDead == false)
